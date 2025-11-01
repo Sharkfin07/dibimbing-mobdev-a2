@@ -3,21 +3,27 @@ import './libs/utils.dart';
 import 'dart:convert';
 import 'dart:io';
 
-void main() async {
+Future<List> fetchUserData(String jsonDir) async {
   // * Fetch data (simulasi fetch API)
   final jsonData = await File('./public/user_data.json').readAsString();
   final userData = jsonDecode(jsonData);
 
   // * Inisialisasi data
   // Inisialisasi data customer
-  List<Customer> customers = [];
+  List<Customer> userCustomerData = [];
   for (Map<String, dynamic> c in userData['userCustomerData'])
-    customers.add(Customer.toJson(c));
+    userCustomerData.add(Customer.toJson(c));
 
   // Inisialisasi data admin
-  List<Admin> admins = [];
+  List<Admin> userAdminData = [];
   for (Map<String, dynamic> a in userData['userAdminData'])
-    admins.add(Admin.toJson(a));
+    userAdminData.add(Admin.toJson(a));
+
+  return [userCustomerData, userAdminData];
+}
+
+void main() async {
+  final [customers, admins] = await fetchUserData('./public/user_data.json');
 
   // Data gabungan users
   final List users = [...customers, ...admins];
