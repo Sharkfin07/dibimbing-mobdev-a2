@@ -3,6 +3,7 @@ import './libs/utils.dart';
 import 'dart:convert';
 import 'dart:io';
 
+// * Return sebuah list dengan len 2 yang berisi [data customer, data admin]
 Future<List> fetchUserData(String jsonDir) async {
   // * Fetch data (simulasi fetch API)
   final jsonData = await File('./public/user_data.json').readAsString();
@@ -26,5 +27,17 @@ void main() async {
   final [customers, admins] = await fetchUserData('./public/user_data.json');
 
   // Data gabungan users
-  final List users = [...customers, ...admins];
+  final List<User> users = [...customers, ...admins];
+
+  // ! Test 1: Search users by email
+  final targetUser = findByEmail("admin1@example.com", users);
+  if (targetUser != null) print(targetUser.password);
+
+  // ! Test 2: Search admins by permission
+  final targetAdmin = findByPermission("add", admins);
+  targetAdmin.forEach((it) => print(it.email));
+
+  // ! Test 3: Search customers by addres
+  final targetCustomer = findByAddress("Jakarta", customers);
+  targetCustomer.forEach((it) => print(it.email));
 }

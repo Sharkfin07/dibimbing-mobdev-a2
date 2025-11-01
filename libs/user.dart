@@ -79,6 +79,9 @@ class Admin extends User {
         password: json['password'],
         permissions: json['permissions'],
       );
+
+  // * Encapsulation Showcase
+  List<dynamic>? get permissions => _permissions;
 }
 
 // ! Tester (delete when done)
