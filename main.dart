@@ -21,10 +21,4 @@ void main() async {
 
   // Data gabungan users
   final List users = [...customers, ...admins];
-
-  print(admins[0].email);
-
-  for (User user in users) {
-    user.showData();
-  }
 }

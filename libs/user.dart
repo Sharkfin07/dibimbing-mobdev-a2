@@ -35,7 +35,7 @@ class Customer extends User {
     if (super._isValidEmail(email))
       _email = email;
     else
-      print("ERROR: Alamat email tidak valid.");
+      throw FormatException("Incorrect email format ($email).");
     _password = password;
   }
 
@@ -65,6 +65,10 @@ class Admin extends User {
     required String password,
     required List<dynamic> permissions,
   }) {
+    if (super._isValidEmail(email))
+      _email = email;
+    else
+      throw FormatException("Incorrect email format ($email).");
     _password = password;
     _permissions = permissions;
   }
