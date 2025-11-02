@@ -9,7 +9,15 @@ User? findByEmail(String targetEmail, List<User> users) {
   return null;
 }
 
-// TODO: Membuat function sort berdasarkan email
+List<User> sortByEmail(List<User> users) {
+  List<User> sorted = [...users];
+  sorted.sort((a, b) {
+    final aEmail = a.email ?? '';
+    final bEmail = b.email ?? '';
+    return aEmail.compareTo(bEmail);
+  });
+  return sorted;
+}
 
 // Mencari admin dengan permission tertentu
 List<Admin> findByPermission(String targetPermission, List<Admin> admins) {
@@ -33,7 +41,7 @@ List<Customer> findByAddress(String targetAddress, List<Customer> customers) {
   return targetCustomers;
 }
 
-// Misc. funcs
+// * Misc. funcs
 void header(String content, {int width = 20}) {
-  print("${'=' * width} $content ${'=' * width}");
+  print("\n${'=' * width} $content ${'=' * width}\n");
 }

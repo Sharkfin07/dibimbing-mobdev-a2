@@ -30,14 +30,28 @@ void main() async {
   final List<User> users = [...customers, ...admins];
 
   // ! Test 1: Search users by email
+  header("Function 1: Mencari User dengan E-mail Tertentu");
   final targetUser = findByEmail("admin1@example.com", users);
   if (targetUser != null) print(targetUser.password);
 
   // ! Test 2: Search admins by permission
+  header("Function 2: Mencari Admin dengan Permissions Tertentu");
   final targetAdmin = findByPermission("add", admins);
-  targetAdmin.forEach((it) => print(it.email));
+  targetAdmin.forEach(
+    (it) => print(it.email),
+  ); // Menampilkan email target admin
 
   // ! Test 3: Search customers by addres
+  header("Function 3: Mencari Customer dengan Address Tertentu");
   final targetCustomer = findByAddress("Jakarta", customers);
-  targetCustomer.forEach((it) => print(it.email));
+  targetCustomer.forEach(
+    (it) => print(it.email),
+  ); // Menampilkan email target user
+
+  // ! Test 4: Sorting users by email
+  header("Function 4: Sorting User berdasarkan E-mail");
+  final sortedUsers = sortByEmail(users);
+  sortedUsers.forEach(
+    (it) => it.showData(),
+  ); // Menampilkan data user yang sudah di sort
 }

@@ -83,6 +83,3 @@ class Admin extends User {
   // * Encapsulation Showcase
   List<dynamic>? get permissions => _permissions;
 }
-
-// ! Tester (delete when done)
-void main() {}
